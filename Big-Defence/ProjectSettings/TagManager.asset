@@ -47,11 +47,11 @@ TagManager:
   - name: BuildingSearchingBuildableTile
     uniqueID: 3103865433
     locked: 0
-  - name: EffecrtTile
-    uniqueID: 1714970965
-    locked: 0
   - name: Tile
     uniqueID: 1907432849
+    locked: 0
+  - name: EffecrtTile
+    uniqueID: 1714970965
     locked: 0
   - name: Grid
     uniqueID: 3127863357
