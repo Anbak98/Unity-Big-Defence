@@ -10,8 +10,8 @@ public class MapEditor : MonoBehaviour
     [ReadOnly][SerializeField] public GameObject tileObj;
     [ReadOnly][SerializeField] public int tileCode;
 
-    GameObject tileGroupParent;
-    readonly string tileGroupName = "TileGroup";
+    public GameObject tileGroupParent;
+    public readonly string tileGroupName = "TileGroup";
 
     private Vector3 lastMousePosition;
 
@@ -91,53 +91,7 @@ public class MapEditor : MonoBehaviour
 
                 case EventType.MouseDrag:
                     break;
-            }
-            
-        }
-
-        if (GUILayout.Button("Initialize map"))
-        {
-            mapController.Initialize();
-
-            foreach (GameObject editorObj in GameObject.FindGameObjectsWithTag("EditorOnly"))
-            {
-                DestroyImmediate(editorObj);
-            }
-
-            tileGroupParent = new GameObject
-            {
-                name = tileGroupName,
-                tag = "EditorOnly"
-            };
-
-            tileGroupParent.transform.parent = transform;
-
-            mapController.Load();
-            mapController.GenerateMap(true);
-        }
-
-        if (GUILayout.Button("Load map"))
-        {
-            foreach (GameObject editorObj in GameObject.FindGameObjectsWithTag("EditorOnly"))
-            {
-                DestroyImmediate(editorObj);
-            }
-
-            tileGroupParent = new GameObject
-            {
-                name = tileGroupName,
-                tag = "EditorOnly"
-            };
-
-            tileGroupParent.transform.parent = transform;
-
-            mapController.Load();
-            mapController.GenerateMap(true);
-        }
-
-        if (GUILayout.Button("Save map"))
-        {
-            mapController.Save();
+            }                
         }
     }
 
@@ -151,5 +105,50 @@ public class MapEditor : MonoBehaviour
     public Sprite GetTileSprite(int index)
     {
         return mapController.GetTileSprite(index);
+    }
+
+    public void MapInit()
+    {
+        mapController.Initialize();
+
+        foreach (GameObject editorObj in GameObject.FindGameObjectsWithTag("EditorOnly"))
+        {
+            DestroyImmediate(editorObj);
+        }
+
+        tileGroupParent = new GameObject
+        {
+            name = tileGroupName,
+            tag = "EditorOnly"
+        };
+
+        tileGroupParent.transform.parent = transform;
+
+        mapController.Load();
+        mapController.GenerateMap(true);
+    }
+
+    public void MapLoad()
+    {
+        foreach (GameObject editorObj in GameObject.FindGameObjectsWithTag("EditorOnly"))
+        {
+            DestroyImmediate(editorObj);
+        }
+
+        tileGroupParent = new GameObject
+        {
+            name = tileGroupName,
+            tag = "EditorOnly"
+        };
+
+        tileGroupParent.transform.parent = transform;
+
+        mapController.Load();
+        mapController.GenerateMap(true);
+    }
+
+    public void MapSave()
+    {
+        mapController.Save();
     }
 }

@@ -125,6 +125,21 @@ public class PagedButtonUIEditor : Editor
         GUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
+
+        if (GUILayout.Button("Initialize map"))
+        {
+            script.MapInit();
+        }
+
+        if (GUILayout.Button("Load map"))
+        {
+            script.MapLoad();
+        }
+
+        if (GUILayout.Button("Save map"))
+        {
+            script.MapSave();
+        }
     }
 
     private Texture2D SpriteToTexture2D(Sprite sprite)
